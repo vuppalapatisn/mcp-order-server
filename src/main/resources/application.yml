@@ -9,7 +9,12 @@ spring:
       server:
         name: mcp-order-server
         version: 1.0.0
-        protocol: STREAMABLE
+        # STREAMABLE -> POST /mcp (session via mcp-session-id header)
+        # SSE        -> GET /sse + POST /mcp/message
+        # STATELESS  -> POST /mcp, no session, no SSE back-channel
+        # Only one can be active at a time. Override with the MCP_PROTOCOL env var
+        # so the transport can be switched per deployment without a rebuild.
+        protocol: ${MCP_PROTOCOL:STREAMABLE}
 
 springdoc:
   api-docs:
