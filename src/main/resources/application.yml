@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: mcp-order-server
+  ai:
+    mcp:
+      server:
+        name: mcp-order-server
+        version: 1.0.0
+        protocol: STREAMABLE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
